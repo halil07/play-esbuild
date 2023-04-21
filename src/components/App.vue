@@ -299,12 +299,10 @@ const renameFile = (e: any) => {
             <div v-for="file in outputFiles" :key="file.path">
                 <iframe></iframe>
                 <component :is="'script'">
-                    setTimeout(() => {
-                        const body = window.frames[0].document.body;
-                        const script = document.createElement('script');
-                        script.innerHTML = `{{file.text}}`;
-                        body.append(script);
-                    }, 1000);
+                    const body = window.frames[0].document.body;
+                    const script = document.createElement('script');
+                    script.innerHTML = `{{file.text}}`;
+                    body.append(script);
                 </component>
             </div>
           </div>
