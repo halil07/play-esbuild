@@ -19,14 +19,14 @@
     "@vitejs/plugin-vue": "^1.9.3",
     "@vue/compiler-sfc": "^3.2.20",
     "codemirror": "^5.63.3",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.9",
     "esbuild-wasm": "^0.15.13",
     "parse-package-name": "^1.0.0",
     "postcss": "^8.3.11",
     "resolve.exports": "^1.1.0",
     "tailwindcss": "^2.2.17",
     "typescript": "^4.4.4",
-    "vite": "^2.6.10",
+    "vite": "^4.3.1",
     "vue": "^3.2.20"
   }
 }

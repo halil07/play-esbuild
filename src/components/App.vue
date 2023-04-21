@@ -65,7 +65,6 @@ const bundle = async () => {
     })
 
     outputFiles.value = result.outputFiles
-    console.log("bundle success")
   } catch (error) {
     // @ts-expect-error
     if (error.errors) {
@@ -298,12 +297,10 @@ const renameFile = (e: any) => {
           </div>
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
-              <CodeMirror
-                mode="javascript"
+              <div
                 class="w-full"
-                :value="file.text"
-                readOnly
-              ></CodeMirror>
+                v-html="file.text"
+              ></div>
             </div>
           </div>
         </div>
