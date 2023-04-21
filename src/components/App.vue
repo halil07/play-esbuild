@@ -64,12 +64,7 @@ const bundle = async () => {
       plugins: [resolvePlugin({ cdnUrl })],
     })
 
-    outputFiles.value = result.outputFiles.map((file) => {
-        return {
-            ...file,
-          text: Base64.encode(file.text)
-        }
-    })
+    outputFiles.value = result.outputFiles;
   } catch (error) {
     // @ts-expect-error
     if (error.errors) {
@@ -302,7 +297,9 @@ const renameFile = (e: any) => {
           </div>
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
-                <script :src="'data:text/javascript;base64,' + file.text"></script>
+                <component :is="'script'">
+                    {{file.text}}
+                </component>
             </div>
           </div>
         </div>
