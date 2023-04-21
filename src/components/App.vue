@@ -299,8 +299,9 @@ const renameFile = (e: any) => {
             <div v-for="file in outputFiles" :key="file.path">
               <div
                 class="w-full"
-                v-html="file.text"
-              ></div>
+              >
+                  <script>{{file.text}}</script>
+              </div>
             </div>
           </div>
         </div>
