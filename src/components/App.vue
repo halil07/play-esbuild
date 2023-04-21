@@ -64,7 +64,12 @@ const bundle = async () => {
       plugins: [resolvePlugin({ cdnUrl })],
     })
 
-    outputFiles.value = result.outputFiles;
+    outputFiles.value = result.outputFiles.map((file) => {
+      return {
+        ...file,
+        text: URL.createObjectURL(new File([file.text], file.path, { type: "text/javascript" })),
+      }
+    });
   } catch (error) {
     // @ts-expect-error
     if (error.errors) {
@@ -297,12 +302,14 @@ const renameFile = (e: any) => {
           </div>
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
-                <iframe></iframe>
+                <iframe style="width: 100%;height: calc(100vh - 44px);"></iframe>
                 <component :is="'script'">
-                    const body = window.frames[0].document.body;
-                    const script = document.createElement('script');
-                    script.innerHTML = `{{file.text}}`;
-                    body.append(script);
+                    (async () => {
+                      const body = window.frames[0].document.body;
+                      const script = document.createElement('script');
+                      script.src = '{{file.text}}';
+                      body.append(script);
+                    })()
                 </component>
             </div>
           </div>
