@@ -297,11 +297,7 @@ const renameFile = (e: any) => {
           </div>
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
-              <div
-                class="w-full"
-              >
-                  <script>{{file.text}}</script>
-              </div>
+                <iframe class="w-full" content="text/html" :srcdoc="file.text"></iframe>
             </div>
           </div>
         </div>
