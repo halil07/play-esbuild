@@ -302,7 +302,7 @@ const renameFile = (e: any) => {
                     setTimeout(() => {
                         const body = window.frames[0].document.body;
                         const script = document.createElement('script');
-                        script.innerHTML = `{{file.text}}`
+                        script.innerHTML = `{{file.text}}`;
                         body.append(script);
                     }, 1000);
                 </component>
