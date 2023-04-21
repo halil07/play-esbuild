@@ -297,8 +297,12 @@ const renameFile = (e: any) => {
           </div>
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
+                <iframe></iframe>
                 <component :is="'script'">
-                    {{file.text}}
+                    const body = window.frames[0].document.body;
+                    const script = document.createElement('script');
+                    script.innerHTML = `{{file.text}}`
+                    body.append(script);
                 </component>
             </div>
           </div>
