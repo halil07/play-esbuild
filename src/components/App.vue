@@ -64,7 +64,12 @@ const bundle = async () => {
       plugins: [resolvePlugin({ cdnUrl })],
     })
 
-    outputFiles.value = result.outputFiles
+    outputFiles.value = result.outputFiles.map((file) => {
+        return {
+            ...file,
+          text: `<script>${file.text}`,
+        }
+    })
   } catch (error) {
     // @ts-expect-error
     if (error.errors) {
