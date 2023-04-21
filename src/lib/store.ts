@@ -3,7 +3,7 @@ import { reactive } from "vue"
 export const state = reactive({
   files: new Map([
     [
-      "index.ts",
+      "index.tsx",
       {
         content: "console.log('Hello, world!')",
       },

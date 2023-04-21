@@ -14,7 +14,7 @@ const buildError = ref<string | null>(null)
 
 const outputFiles = ref<null | OutputFile[]>(null)
 
-const activeFileName = ref<string>("index.ts")
+const activeFileName = ref<string>("index.tsx")
 const renamingFileName = ref<string | null>(null)
 
 const activeFile = computed(() => {
@@ -22,7 +22,7 @@ const activeFile = computed(() => {
 })
 
 const isBuiltinFiles = (name: string) =>
-  ["index.ts", "esbuild.config.json"].includes(name)
+  ["index.tsx", "esbuild.config.json"].includes(name)
 
 const createNewFile = () => {
   const name = `file-${state.files.size}.ts`
@@ -56,7 +56,7 @@ const bundle = async () => {
     )
     const result = await esbuild.build({
       ...userConfig,
-      entryPoints: ["/project/index.ts"],
+      entryPoints: ["/project/index.tsx"],
       outdir: "/dist",
       format: userConfig.format || "cjs",
       write: false,
