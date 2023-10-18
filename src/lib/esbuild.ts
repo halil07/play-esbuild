@@ -123,8 +123,9 @@ export function resolvePlugin(): Plugin {
         const parsed = parsePackageName(args.path)
         let subpath = parsed.path
         if (!subpath) {
+          const packageName = parsed.name?.split("/").length > 0 ? parsed.name?.split("/")?.reverse()[0] : parsed.name
           return {
-            path: makeCDNUrl(`/stable/${parsed.name}@${parsed.version}/es2022/${parsed.name}.mjs`),
+            path: makeCDNUrl(`/stable/${parsed.name}@${parsed.version}/es2022/${packageName}.mjs`),
             namespace: "http-url",
           }
         }
