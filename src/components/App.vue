@@ -67,6 +67,7 @@ const bundle = async () => {
     outputFiles.value = result.outputFiles.map((file) => {
       return {
         ...file,
+        rawScript: file.text,
         text: URL.createObjectURL(new File([file.text], file.path, { type: "text/javascript" })),
       }
     });
@@ -302,7 +303,7 @@ const renameFile = (e: any) => {
           </div>
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
-                <iframe style="width: 100%;height: calc(100vh - 44px);"></iframe>
+                <iframe></iframe>
                 <component :is="'script'">
                     (async () => {
                       const body = window.frames[0].document.body;
@@ -311,6 +312,7 @@ const renameFile = (e: any) => {
                       body.append(script);
                     })()
                 </component>
+                <pre>{{file.rawScript}}</pre>
             </div>
           </div>
         </div>

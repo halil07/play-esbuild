@@ -30,13 +30,9 @@ const URL_RE = /^https?:\/\//
 // https://esbuild.github.io/api/#resolve-extensions
 const RESOLVE_EXTENSIONS = [".tsx", ".ts", ".jsx", ".js", ".css", ".json"]
 
-export function resolvePlugin({
-  cdnUrl = "https://unpkg.com",
-}: {
-  cdnUrl: string
-}): Plugin {
+export function resolvePlugin(): Plugin {
   const makeCDNUrl = (p: string) => {
-    return cdnUrl + "/" + p.replace(/^\//, "")
+    return "https://esm.sh" + "/" + p.replace(/^\//, "")
   }
 
   return {
@@ -127,16 +123,9 @@ export function resolvePlugin({
         const parsed = parsePackageName(args.path)
         let subpath = parsed.path
         if (!subpath) {
-          const pkg = await fetch(
-            makeCDNUrl(`${parsed.name}@${parsed.version}/package.json`)
-          ).then((res) => res.json())
-          const p =
-            resolve(pkg, ".", {
-              require:
-                args.kind === "require-call" || args.kind === "require-resolve",
-            }) || legacy(pkg)
-          if (typeof p === "string") {
-            subpath = p.replace(/^\.?\/?/, "/")
+          return {
+            path: makeCDNUrl(`/stable/${parsed.name}@${parsed.version}/es2022/${parsed.name}.mjs`),
+            namespace: "http-url",
           }
         }
 
@@ -145,7 +134,7 @@ export function resolvePlugin({
         }
 
         return {
-          path: makeCDNUrl(`${parsed.name}@${parsed.version}${subpath}`),
+          path: makeCDNUrl(`/stable/${parsed.name}@${parsed.version}/es2022${subpath}.js`),
           namespace: "http-url",
         }
       })
