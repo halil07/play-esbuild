@@ -5,7 +5,13 @@ export const state = reactive({
     [
       "index.tsx",
       {
-        content: "console.log('Hello, world!')",
+        content: `import {sum} from "./sum";\nconsole.log(sum([1,2,3,45,6,87,5,12]))`
+      },
+    ],
+    [
+      "sum.tsx",
+      {
+        content: `import lodash from "lodash";\nexport const sum = lodash.sum`,
       },
     ],
     [

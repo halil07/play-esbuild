@@ -1,6 +1,6 @@
 # play-esbuild
 
-Try esbuild online: https://esbuild.egoist.dev
+Try esbuild online: https://play-esbuild.halil07.dev
 
 ## Development
 
@@ -10,10 +10,6 @@ Vite + Vue:
 pnpm i
 pnpm run dev
 ```
-
-## Sponsors
-
-[![sponsors](https://sponsors-images.egoist.dev/sponsors.svg)](https://github.com/sponsors/egoist)
 
 ## License
 

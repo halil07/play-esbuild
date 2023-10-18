@@ -220,7 +220,7 @@ const renameFile = (e: any) => {
           </ul>
         </div>
         <div class="flex space-x-4">
-          <a href="https://github.com/egoist/play-esbuild" target="_blank"
+          <a href="https://github.com/halil07/play-esbuild" target="_blank"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
