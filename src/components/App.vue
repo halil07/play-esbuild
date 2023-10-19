@@ -61,7 +61,7 @@ const bundle = async () => {
       format: userConfig.format || "cjs",
       write: false,
       bundle: true,
-      plugins: [resolvePlugin({ cdnUrl })],
+      plugins: [resolvePlugin()],
     })
 
     outputFiles.value = result.outputFiles.map((file) => {
@@ -309,6 +309,7 @@ const renameFile = (e: any) => {
                       const body = window.frames[0].document.body;
                       const script = document.createElement('script');
                       script.src = '{{file.text}}';
+                      script.type = 'module';
                       body.append(script);
                     })()
                 </component>

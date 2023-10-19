@@ -156,7 +156,7 @@ export function resolvePlugin(): Plugin {
 
       build.onLoad({ filter: /.*/, namespace: "http-url" }, async (args) => {
         logger.log(`Fetching ${args.path}`)
-        const res = await fetch(args.path)
+        const res = await fetch(args.path);
         if (!res.ok) throw new Error(`failed to load ${res.url}: ${res.status}`)
         const loader = inferLoader(res.url)
         return {
