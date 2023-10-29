@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { OutputFile } from "esbuild-wasm"
+import prettyBytes from 'pretty-bytes';
 import { computed, ref, onMounted, watchEffect } from "vue"
 import { useEsbuild } from "../hooks/useEsbuild"
 import { getMode } from "../lib/editor"
@@ -12,7 +13,7 @@ import { state } from "../lib/store"
 const building = ref(false)
 const buildError = ref<string | null>(null)
 
-const outputFiles = ref<null | OutputFile[]>(null)
+const outputFiles = ref<null | any[]>(null)
 
 const activeFileName = ref<string>("index.tsx")
 const renamingFileName = ref<string | null>(null)
@@ -65,10 +66,12 @@ const bundle = async () => {
     })
 
     outputFiles.value = result.outputFiles.map((file) => {
+      const realFile = new File([file.text], file.path, { type: "text/javascript" })
       return {
         ...file,
         rawScript: file.text,
-        text: URL.createObjectURL(new File([file.text], file.path, { type: "text/javascript" })),
+        size: prettyBytes(realFile.size),
+        text: URL.createObjectURL(realFile),
       }
     });
   } catch (error) {
@@ -304,6 +307,7 @@ const renameFile = (e: any) => {
           <div v-if="outputFiles">
             <div v-for="file in outputFiles" :key="file.path">
                 <iframe></iframe>
+                <div>Size: {{ file.size }}</div>
                 <component :is="'script'">
                     (async () => {
                       const body = window.frames[0].document.body;

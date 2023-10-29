@@ -5,20 +5,14 @@ export const state = reactive({
     [
       "index.tsx",
       {
-        content: `import {sum} from "./sum";\nconsole.log(sum([1,2,3,45,6,87,5,12]))`
-      },
-    ],
-    [
-      "sum.tsx",
-      {
-        content: `import lodash from "lodash";\nexport const sum = lodash.sum`,
+        content: `const h1 = <h1 onclick="alert(5)">Hellö</h1>;\nconsole.log(h1);\ndocument.body.append(h1)`
       },
     ],
     [
       "esbuild.config.json",
       {
         content: JSON.stringify(
-          { format: "cjs", minify: true },
+          { format: "cjs", "minify": true, "jsx": "automatic", "jsxImportSource":"jsx-dom/min"  },
           null,
           2
         ),
