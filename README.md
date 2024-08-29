@@ -1,6 +1,6 @@
 # play-esbuild
 
-Try esbuild online: https://play-esbuild.halil07.dev
+Try esbuild online: https://esbuild.halil07.dev
 
 ## Development
 
